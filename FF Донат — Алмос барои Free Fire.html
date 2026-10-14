@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="tg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FF Донат — Алмос барои Free Fire</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f4f5fb;--card:#fff;--tx:#14151f;--mu:#6b7085;--bd:#e3e5f0;--ac:#ff5a1f;--ac2:#ff9d00;--ok:#16a34a;--no:#dc2626}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d0e17;--card:#171926;--tx:#f1f2fa;--mu:#8e93ab;--bd:#272a3d}}
+:root[data-theme="dark"]{--bg:#0d0e17;--card:#171926;--tx:#f1f2fa;--mu:#8e93ab;--bd:#272a3d}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.w{max-width:620px;margin:0 auto;padding:18px 16px 60px}
+.hero{border-radius:22px;padding:26px 22px;color:#fff;background:linear-gradient(135deg,#ff5a1f,#ff9d00 60%,#ffcf4d);box-shadow:0 12px 30px -12px rgba(255,90,31,.6)}
+.hero h1{margin:0 0 4px;font-size:26px}.hero p{margin:0;opacity:.92;font-size:14px}
+h2{font-size:15px;margin:26px 0 10px;color:var(--mu);text-transform:uppercase;letter-spacing:.06em}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.pk{background:var(--card);border:2px solid var(--bd);border-radius:16px;padding:14px;text-align:left;cursor:pointer;color:var(--tx);font:inherit;transition:.15s}
+.pk:hover{transform:translateY(-2px)}.pk.on{border-color:var(--ac);box-shadow:0 0 0 4px rgba(255,90,31,.15)}
+.pk b{display:block;font-size:20px}.pk span{color:var(--mu);font-size:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px}
+label{display:block;font-size:13px;color:var(--mu);margin:12px 0 5px}
+input{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font:inherit}
+input:focus{outline:2px solid var(--ac);border-color:transparent}
+.pay{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--bg);border-radius:12px;padding:12px 14px;margin-top:8px}
+.pay b{font-size:18px;letter-spacing:.02em}
+.btn{border:0;border-radius:14px;padding:14px 18px;font:inherit;font-weight:700;cursor:pointer;color:#fff;background:linear-gradient(135deg,var(--ac),var(--ac2))}
+.btn.sm{padding:8px 12px;font-size:14px;border-radius:10px}.btn.g{background:var(--ok)}.btn.r{background:var(--no)}.btn.l{background:var(--bd);color:var(--tx)}
+.btn:disabled{opacity:.5}.full{width:100%;margin-top:16px}
+.up{display:block;border:2px dashed var(--bd);border-radius:14px;padding:18px;text-align:center;color:var(--mu);cursor:pointer;margin-top:8px}
+.up img{max-width:100%;max-height:220px;border-radius:10px}
+.msg{margin-top:12px;font-size:14px;padding:10px 12px;border-radius:10px;background:var(--bg)}
+.o{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:10px}
+.o .t{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.o img{max-width:100%;max-height:260px;border-radius:10px;margin:8px 0;display:block}
+.st{font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;background:var(--bg)}
+.st.pending{color:var(--ac2)}.st.accepted{color:var(--ok)}.st.rejected{color:var(--no)}
+.row{display:flex;gap:8px;flex-wrap:wrap}.mu{color:var(--mu);font-size:13px}
+.hide{display:none}
+</style>
+</head>
+<body>
+<div class="w">
+  <div class="hero"><h1>💎 FF Донат</h1><p>Алмоси Free Fire — зуд ва бехатар. Бастаро интихоб кунед ва пул гузаронед.</p></div>
+
+  <h2>1. Бастаро интихоб кунед</h2>
+  <div class="grid" id="pk"></div>
+
+  <h2>2. Маълумоти шумо</h2>
+  <div class="card">
+    <label>Free Fire ID</label><input id="ffid" inputmode="numeric" placeholder="Масалан: 123456789">
+    <label>Номи шумо дар бозӣ</label><input id="nick" placeholder="Никнейм">
+  </div>
+
+  <h2>3. Пардохт</h2>
+  <div class="card">
+    <div class="mu">Маблағро ба рақами Alif фиристед:</div>
+    <div class="pay"><b id="phone">907047066</b><button class="btn sm l" id="cp">Нусха</button></div>
+    <div class="pay"><span class="mu">Маблағи пардохт</span><b id="sum">—</b></div>
+    <label>Скриншоти квитансия</label>
+    <label class="up" id="upl"><input type="file" id="file" accept="image/*" class="hide"><span id="uph">📎 Скриншотро интихоб кунед</span><img id="pv" class="hide" alt=""></label>
+    <button class="btn full" id="send">Фармоишро фиристодан</button>
+    <div class="msg hide" id="m1"></div>
+  </div>
+
+  <div id="mine" class="hide"><h2>Фармоишҳои шумо</h2><div id="mineL"></div></div>
+  <div id="admin" class="hide"><h2>🔐 Панели соҳиб — фармоишҳо</h2><div id="adL"></div></div>
+</div>
+
+<script>
+const PHONE="907047066";
+const PACKS=[["100 алмос",9.5,"💎"],["310 алмос",30,"💎"],["520 алмос",55,"💎"],["1600 алмос",110,"💎"],["2180 алмос",220,"💎"],["5600 алмос",550,"💎"],["Ваучери Лайт",5.9,"🎟️"],["Ваучери ҳафта",15.9,"🎟️"],["Ваучери моҳ",65,"🎟️"]]; // [ном, нарх бо сомонӣ, эмоҷӣ]
+const fmt=n=>(+n).toFixed(2).replace(/\.00$/,"").replace(/(\.\d)0$/,"$1");
+const $=id=>document.getElementById(id);
+let sel=null,db=null,assets=null,user=null,myId=null,isOwner=false,blob=null,orders=[];
+
+$("phone").textContent=PHONE;
+$("pk").innerHTML=PACKS.map((p,i)=>`<button class="pk" data-i="${i}"><b>${p[2]} ${p[0]}</b><span>${fmt(p[1])} сомонӣ</span></button>`).join("");
+$("pk").onclick=e=>{const b=e.target.closest(".pk");if(!b)return;sel=+b.dataset.i;
+  document.querySelectorAll(".pk").forEach(x=>x.classList.toggle("on",x===b));$("sum").textContent=fmt(PACKS[sel][1])+" сомонӣ"};
+$("cp").onclick=()=>{try{navigator.clipboard.writeText(PHONE);$("cp").textContent="✓"}catch(e){}};
+function showPv(){$("pv").src=URL.createObjectURL(blob);$("pv").classList.remove("hide");$("uph").classList.add("hide")}
+$("file").onchange=e=>{blob=e.target.files[0]||null;if(!blob)return;showPv();return;
+  $("upl").innerHTML=`<img src="${URL.createObjectURL(blob)}" alt="">`};
+
+function say(t){const m=$("m1");m.textContent=t;m.classList.remove("hide")}
+
+$("send").onclick=async()=>{
+  const id=$("ffid").value.trim(),nick=$("nick").value.trim();
+  if(sel===null)return say("Аввал бастаро интихоб кунед.");
+  if(!/^\d{6,12}$/.test(id))return say("Free Fire ID-ро дуруст ворид кунед.");
+  if(!blob)return say("Скриншоти квитансияро илова кунед.");
+  if(!db||!assets)return say("Фиристодани худкор дар ин браузер дастнорас аст. Скриншотро мустақиман ба соҳиби сайт фиристед.");
+  $("send").disabled=true;say("Фиристода истодааст…");
+  try{
+    const up=await assets.upload(blob);
+    const oid="o"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+    await db.collection("orders").doc(oid).set({ffid:id,nick,title:PACKS[sel][2]+" "+PACKS[sel][0],price:PACKS[sel][1],
+      shot:up.url,status:"pending",by:myId||"",at:Date.now()});
+    say("✅ Фармоиш фиристода шуд! Соҳиб онро тафтиш мекунад ва алмосро мефиристад.");
+    blob=null;$("file").value="";$("pv").classList.add("hide");$("uph").classList.remove("hide");
+    $("file").onchange=e=>{blob=e.target.files[0]||null;if(blob)showPv()};
+  }catch(e){say("Хатогӣ: "+(e&&e.message||"бори дигар кӯшиш кунед"))}
+  $("send").disabled=false;
+};
+
+const SL={pending:"⏳ Интизорӣ",accepted:"✅ Қабул шуд",rejected:"❌ Рад шуд"};
+function card(o,adm){
+  const d=document.createElement("div");d.className="o";
+  const t=new Date(o.at).toLocaleString("ru-RU");
+  d.innerHTML=`<div class="t"><b><span class="ti"></span> · ${fmt(o.price)} сомонӣ</b><span class="st ${o.status}">${SL[o.status]||""}</span></div>
+  <div class="mu">ID: <b></b> · <span></span> · ${t}</div>`;
+  d.querySelector("b+*,b").nextSibling;
+  d.querySelector(".ti").textContent=o.title||"";const mu=d.querySelector(".mu");mu.children[0].textContent=o.ffid;mu.children[1].textContent=o.nick||"—";
+  if(adm){
+    const cb=document.createElement("button");cb.className="btn sm l";cb.style.marginTop="8px";cb.textContent="📋 Нусхаи ID";cb.onclick=()=>{try{navigator.clipboard.writeText(String(o.ffid));cb.textContent="✓ Нусха шуд"}catch(e){}};d.appendChild(cb);const nt=document.createElement("div");nt.className="msg";nt.textContent="💡 ID-ро дар Garena Shop ворид кунед ва тафтиш кунед, ки никнейм бо «"+(o.nick||"—")+"» мувофиқ аст.";d.appendChild(nt);const im=document.createElement("img");im.src=o.shot;im.alt="скриншот";d.appendChild(im);
+    if(o.status==="pending"){
+      const r=document.createElement("div");r.className="row";
+      r.innerHTML='<button class="btn sm g">Қабул</button><button class="btn sm r">Рад</button>';
+      r.children[0].onclick=()=>db.collection("orders").doc(o.id).update({status:"accepted"});
+      r.children[1].onclick=()=>db.collection("orders").doc(o.id).update({status:"rejected"});
+      d.appendChild(r);
+    }
+  }
+  return d;
+}
+function render(){
+  const list=orders.slice().sort((a,b)=>b.at-a.at);
+  if(isOwner){$("admin").classList.remove("hide");const L=$("adL");L.innerHTML="";
+    if(!list.length)L.innerHTML='<div class="mu">Ҳоло фармоиш нест.</div>';
+    list.forEach(o=>L.appendChild(card(o,true)))}
+  const mine=list.filter(o=>myId&&o.by===myId);
+  if(mine.length&&!isOwner){$("mine").classList.remove("hide");const L=$("mineL");L.innerHTML="";mine.forEach(o=>L.appendChild(card(o,false)))}
+}
+(async()=>{
+  try{
+    if(!window.claude)return;
+    user=await claude.use("user");db=await claude.use("db");assets=await claude.use("assets");
+    if(user){isOwner=!!user.isOwner();try{myId=await user.id()}catch(e){}}
+    if(db)db.collection("orders").onSnapshot(s=>{orders=s.docs.map(d=>({id:d.id,...d.data()}));render()},()=>{});
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
